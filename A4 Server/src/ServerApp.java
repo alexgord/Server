@@ -30,7 +30,7 @@ public class ServerApp extends EchoServer {
 		retrieveClass retrieve = null;
 		message.postMessage(server, messageList);
 		//message(server);
-		retrieve.getMessages(server);
+		retrieve.getMessages(server, messageList);
 		//retrieve(server);
 	    server.setExecutor(null); // creates a default executor
 	    server.start();
