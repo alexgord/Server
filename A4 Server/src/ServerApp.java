@@ -29,11 +29,16 @@ public class ServerApp extends EchoServer {
 		//messageClass message = null;
 		//retrieveClass retrieve = null;
 		//message.postMessage(server, messageList);
+		server.createContext("/", new EchoServer());
+		
+		messageClass message = null;
+		retrieveClass retrieve = null;
+		////message.postMessage(server, messageList);
 		//message(server);
 		//retrieve.getMessages(server, messageList);
 		//message(server);
 		//retrieve(server);
-		server.createContext("/", new EchoServer());
+		////retrieve.getMessages(server, messageList);
 		//retrieve(server);
 	    server.setExecutor(null); // creates a default executor
 	    server.start();

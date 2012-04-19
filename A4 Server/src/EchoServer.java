@@ -10,6 +10,7 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.net.URLEncoder;
 
 /*
  * The echo server will return information about the requests it receives
@@ -26,7 +27,18 @@ public class EchoServer implements HttpHandler {
 		ArrayList<String> context = ParseURI(uri.toString());
 		String room = context.get(0);
 		String action = context.get(1);
+		URLEncoder encode;
 
+		String stringURI = 	uri.toString();
+		String delims = "[/?&=]";
+		String[] parsedURI = stringURI.split(delims);
+		System.out.println(parsedURI.length);
+		
+		int count = 0;
+		while (count < parsedURI.length) {
+			System.out.println(parsedURI[count]);
+			count++;
+		}
 		try {
 
 			// in the header specify that the body will contain HTML
