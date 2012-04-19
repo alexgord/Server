@@ -8,10 +8,7 @@ import javax.xml.ws.http.HTTPException;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import com.sun.net.httpserver.HttpServer;
 
-import java.net.URLEncoder;
-import java.net.URLDecoder;
 
 /*
  * The echo server will return information about the requests it receives
@@ -55,8 +52,6 @@ public class EchoServer implements HttpHandler {
 			// and we're done...
 			respBody.write("</table></body></html>".getBytes());
 			respBody.close();
-			
-			message2(uri);
 		}
 		catch (IOException e) {
 			System.err.println("Could not process message... aborting.");
@@ -67,24 +62,5 @@ public class EchoServer implements HttpHandler {
 
 	private String keyValueToHTMLString(String key, String value) {
 		return "<tr><td>" + key + "</td><td>" + value + "</td></tr>";
-	}
-	
-	public static void message(HttpServer server, EchoServer echo) {
-		server.createContext("/message", new EchoServer());
-		//System.out.println(echo.handle(exchange));
-	}
-
-	@SuppressWarnings("deprecation")
-	public static void message2(URI uri2) {
-		String uriDecode = null;
-		URLDecoder decode = new URLDecoder();
-		//URLDecoder.decode(uri2.toString(),uriDecode);
-		//decode.decode(uriDecode, uri2.toString());
-	}
-	
-	public static void retrieve(HttpServer server, EchoServer echo) {
-		server.createContext("/retrieve", new EchoServer());
-		//URLEncoder encode = URLEncoder.encode(echo.)
-		
 	}
 }
