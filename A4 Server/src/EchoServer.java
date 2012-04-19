@@ -18,8 +18,19 @@ import java.net.URLEncoder;
 @SuppressWarnings("restriction")  // disables the "access restriction" warnings for com.sun.net.httpserver.*
 public class EchoServer implements HttpHandler {
 
+	ArrayList<Room> rooms;
+	String currRoom;
+	String currAction;
+	ArrayList<Parameter> parameters;
+	public EchoServer()
+	{
+		rooms = new ArrayList<Room>();
+		parameters = new ArrayList<Parameter>();
+	}
+	
 	@Override
-	public void handle(HttpExchange exchange) throws IOException, HTTPException {
+	public void handle(HttpExchange exchange) throws IOException, HTTPException
+	{
 
 		String method = exchange.getRequestMethod();
 		URI uri = exchange.getRequestURI();
@@ -27,18 +38,17 @@ public class EchoServer implements HttpHandler {
 		ArrayList<String> context = ParseURI(uri.toString());
 		String room = context.get(0);
 		String action = context.get(1);
+		currAction = action;
+		context.remove(0);
+		context.remove(0);
+		parameters = GenerateParameters(context);
+		//parameters = 
 		URLEncoder encode;
-
-		String stringURI = 	uri.toString();
-		String delims = "[/?&=]";
-		String[] parsedURI = stringURI.split(delims);
-		System.out.println(parsedURI.length);
-		
-		int count = 0;
-		while (count < parsedURI.length) {
-			System.out.println(parsedURI[count]);
-			count++;
+		if (!RoomExists(room))
+		{
+			rooms.add(new Room(room));
 		}
+		currRoom = room;
 		try {
 
 			// in the header specify that the body will contain HTML
@@ -65,9 +75,6 @@ public class EchoServer implements HttpHandler {
 			System.err.println("Could not process message... aborting.");
 			return;
 		}
-
-
-
 	}
 
 	private String keyValueToHTMLString(String key, String value) {
@@ -97,7 +104,7 @@ public class EchoServer implements HttpHandler {
 
 		// and we're done...
 		//respBody.write("</table></body></html>".getBytes());
-		respBody.write("You are now in Message".getBytes());
+		respBody.write(("You are now in Message in room " + currRoom).getBytes());
 		respBody.close();
 	}
 
@@ -124,25 +131,55 @@ public class EchoServer implements HttpHandler {
 
 		// and we're done...
 		//respBody.write("</table></body></html>".getBytes());
-		respBody.write("You are now in Retrieve".getBytes());
+		respBody.write("You are now in Retrieve<br />".getBytes());
+		for (int i = 0; i < parameters.size(); i++)
+		{
+			respBody.write((parameters.get(i).ToString() + "<br />").getBytes());
+		}
 		respBody.close();
 	}
 
 	private ArrayList<String> ParseURI(String s)
 	{
 		String stringURI = s;
-        String delims = "[/?&=]";
-        String[] parsedURI = stringURI.split(delims);
-        System.out.println(parsedURI.length);
-        ArrayList<String> r = new ArrayList<String>();
-        int count = 0;
-        while (count < parsedURI.length)
-        {
-                System.out.println(parsedURI[count]);
-                r.add(parsedURI[count]);
-                count++;
-        }
-        r.remove("");
-        return r;
+		String delims = "[/?&=]";
+		String[] parsedURI = stringURI.split(delims);
+		System.out.println(parsedURI.length);
+		ArrayList<String> r = new ArrayList<String>();
+		int count = 0;
+		while (count < parsedURI.length)
+		{
+			System.out.println(parsedURI[count]);
+			r.add(parsedURI[count]);
+			count++;
+		}
+		r.remove("");
+		return r;
+	}
+	
+	public boolean RoomExists(String s)
+	{
+		boolean r = false;
+		for (int i = 0; i < rooms.size(); i++)
+		{
+			if (rooms.get(i).equals(s))
+			{
+				r = true;
+				break;
+			}
+		}
+		return r;
+	}
+	
+	public ArrayList<Parameter> GenerateParameters(ArrayList<String> input)
+	{
+		ArrayList<Parameter> r = new ArrayList<Parameter>();
+		for (int i = 0; i < input.size(); i++)
+		{
+			r.add(new Parameter(input.get(0), input.get(1)));
+			input.remove(0);
+			input.remove(0);
+		}
+		return r;
 	}
 }
