@@ -22,15 +22,18 @@ public class ServerApp extends EchoServer {
 	public static void main(String[] args) throws HTTPException, IOException {
 		// TODO Auto-generated method stub
 		//HttpExchange exchange = new HttpExchange();
-		EchoServer echo = new EchoServer();
+		//EchoServer echo = new EchoServer();
 		MessageList messageList = new MessageList();
 		HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 		
-		messageClass message = null;
-		retrieveClass retrieve = null;
-		message.postMessage(server, messageList);
+		//messageClass message = null;
+		//retrieveClass retrieve = null;
+		//message.postMessage(server, messageList);
 		//message(server);
-		retrieve.getMessages(server, messageList);
+		//retrieve.getMessages(server, messageList);
+		//message(server);
+		//retrieve(server);
+		server.createContext("/", new EchoServer());
 		//retrieve(server);
 	    server.setExecutor(null); // creates a default executor
 	    server.start();
@@ -40,14 +43,14 @@ public class ServerApp extends EchoServer {
 		//echo.handle(exchange);
 	}
 
-	public static void message(HttpServer server) {
-		server.createContext("/message", new EchoServer());
-	}
+	//public static void message(HttpServer server) {
+		//server.createContext("/message", new EchoServer());
+	//}
 
 
-	public static void retrieve(HttpServer server) {
-		server.createContext("/retrieve", new EchoServer());
+	//public static void retrieve(HttpServer server) {
+		//server.createContext("/retrieve", new EchoServer());
 		//URLEncoder encode = new URLEncoder();
 
-	}
+	//}
 }
