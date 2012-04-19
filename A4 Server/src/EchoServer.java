@@ -57,7 +57,9 @@ public class EchoServer implements HttpHandler {
 			System.err.println("Could not process message... aborting.");
 			return;
 		}
-
+		
+		
+		
 	}
 
 	private String keyValueToHTMLString(String key, String value) {

@@ -23,9 +23,15 @@ public class ServerApp extends EchoServer {
 		// TODO Auto-generated method stub
 		//HttpExchange exchange = new HttpExchange();
 		EchoServer echo = new EchoServer();
+		MessageList messageList = new MessageList();
 		HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-		message(server);
-		retrieve(server);
+		
+		messageClass message = null;
+		retrieveClass retrieve = null;
+		message.postMessage(server, messageList);
+		//message(server);
+		retrieve.getMessages(server);
+		//retrieve(server);
 	    server.setExecutor(null); // creates a default executor
 	    server.start();
 		//handle(exchange);
