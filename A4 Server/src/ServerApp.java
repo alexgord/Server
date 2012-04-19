@@ -14,9 +14,9 @@ public class ServerApp extends EchoServer {
 	 */
 	public static void main(String[] args) throws HTTPException, IOException {
 		// TODO Auto-generated method stub
-		HttpExchange exchange = new HttpExchange();
-		handle h = new handle;
-		handle(exchange);
+		//HttpExchange exchange = new HttpExchange();
+		//handle h = new handle;
+		//handle(exchange);
 	}
 
 }
