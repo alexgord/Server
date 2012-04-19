@@ -8,6 +8,9 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+import java.net.URLEncoder;
+import java.net.URLDecoder;
+
 
 public class ServerApp extends EchoServer {
 
@@ -38,5 +41,7 @@ public class ServerApp extends EchoServer {
 	
 	public static void retrieve(HttpServer server) {
 		server.createContext("/retrieve", new EchoServer());
+		//URLEncoder encode = new URLEncoder();
+		
 	}
 }
