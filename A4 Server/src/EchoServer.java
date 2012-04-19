@@ -9,6 +9,7 @@ import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
+import java.net.URLEncoder;
 
 /*
  * The echo server will return information about the requests it receives
@@ -22,7 +23,18 @@ public class EchoServer implements HttpHandler {
 		String method = exchange.getRequestMethod();
 		URI uri = exchange.getRequestURI();
 		Headers reqHeaders = exchange.getRequestHeaders();
+		URLEncoder encode;
 
+		String stringURI = 	uri.toString();
+		String delims = "[/?&=]";
+		String[] parsedURI = stringURI.split(delims);
+		System.out.println(parsedURI.length);
+		
+		int count = 0;
+		while (count < parsedURI.length) {
+			System.out.println(parsedURI[count]);
+			count++;
+		}
 		try {
 
 			// in the header specify that the body will contain HTML
@@ -35,7 +47,6 @@ public class EchoServer implements HttpHandler {
 			OutputStream respBody = exchange.getResponseBody();
 			respBody.write("<?xml version=\"1.0\"?>".getBytes());
 			respBody.write("<html><body><table>".getBytes());
-
 			// print the request information
 
 			// 1. method and URI

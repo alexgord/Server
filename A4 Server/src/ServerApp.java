@@ -26,11 +26,13 @@ public class ServerApp extends EchoServer {
 		MessageList messageList = new MessageList();
 		HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
 		
+		server.createContext("/", new EchoServer());
+		
 		messageClass message = null;
 		retrieveClass retrieve = null;
-		message.postMessage(server, messageList);
+		////message.postMessage(server, messageList);
 		//message(server);
-		retrieve.getMessages(server, messageList);
+		////retrieve.getMessages(server, messageList);
 		//retrieve(server);
 	    server.setExecutor(null); // creates a default executor
 	    server.start();
