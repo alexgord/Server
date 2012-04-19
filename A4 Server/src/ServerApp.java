@@ -21,7 +21,8 @@ public class ServerApp extends EchoServer {
 		//HttpExchange exchange = new HttpExchange();
 		EchoServer echo = new EchoServer();
 		HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
-	    server.createContext("/test", new EchoServer());
+		message(server);
+		retrieve(server);
 	    server.setExecutor(null); // creates a default executor
 	    server.start();
 		//handle(exchange);
@@ -29,5 +30,13 @@ public class ServerApp extends EchoServer {
 		HttpExchange exchange = null;
 		//echo.handle(exchange);
 	}
+	
+	public static void message(HttpServer server) {
+		server.createContext("/message", new EchoServer());
+	}
 
+	
+	public static void retrieve(HttpServer server) {
+		server.createContext("/retrieve", new EchoServer());
+	}
 }
