@@ -3,6 +3,8 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.util.Iterator;
 
+import javax.xml.ws.http.HTTPException;
+
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
@@ -15,7 +17,7 @@ import com.sun.net.httpserver.HttpHandler;
 public class EchoServer implements HttpHandler {
 
 	@Override
-	public void handle(HttpExchange exchange) throws IOException {
+	public void handle(HttpExchange exchange) throws IOException, HTTPException {
 
 		String method = exchange.getRequestMethod();
 		URI uri = exchange.getRequestURI();
