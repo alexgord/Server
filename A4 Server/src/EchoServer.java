@@ -101,8 +101,6 @@ public class EchoServer implements HttpHandler {
 		String time = l.toString();
 		Message m = new Message(user, content, time);
 		roomList.AddMessageToCurrentRoom(m);
-		//respBody.write(("You are now in Message in room " + roomList.getCurrRoom() + "<br />").getBytes());
-		//respBody.write((parameterList.toString() + "<br />").getBytes());
 		respBody.close();
 	}
 
@@ -111,26 +109,7 @@ public class EchoServer implements HttpHandler {
 		// acknowledge the request
 		exchange.sendResponseHeaders(200, 0);
 		OutputStream respBody = exchange.getResponseBody();
-		//respBody.write("<?xml version=\"1.0\"?>".getBytes());
-		//respBody.write("<html><body><table>".getBytes());
 
-		// print the request information
-
-		// 1. method and URI
-		//respBody.write(keyValueToHTMLString("Method", method).getBytes());
-		//respBody.write(keyValueToHTMLString("URI", uri.toString()).getBytes());
-
-		// 2. headers
-		//Iterator<String> iter = reqHeaders.keySet().iterator();
-		//while (iter.hasNext()) {
-		//String key = iter.next();
-		//respBody.write(keyValueToHTMLString(key, reqHeaders.get(key).toString()).getBytes());
-		//}
-
-		// and we're done...
-		//respBody.write("</table></body></html>".getBytes());
-		//respBody.write("You are now in Retrieve<br />".getBytes());
-		//respBody.write(parameterList.toString().getBytes());
 		long since = 0;
 		if (parameterList.ParameterExists("since"))
 		{

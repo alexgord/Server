@@ -12,7 +12,6 @@ public class Message
 	{
 		this.name = name;
 		this.message = URLDecoder.decode(message);
-		//this.message = message;
 		this.time = time;
 	}
 
