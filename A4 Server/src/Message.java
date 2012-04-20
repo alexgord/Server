@@ -50,4 +50,12 @@ public class Message
 	{
 		return this.name + " " + this.message + " " + this.time;
 	}
+	
+	public String toXMLString()
+	{
+		String r = "<message user=\"" + this.getName() + "\" time=\"" + this.getTime() + "\">";
+		r += this.getMessage();
+		r += "</message>";
+		return r;
+	}
 }

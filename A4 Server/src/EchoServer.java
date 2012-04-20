@@ -101,9 +101,9 @@ public class EchoServer implements HttpHandler {
 		String time = l.toString();
 		Message m = new Message(user, content, time);
 		roomList.AddMessageToCurrentRoom(m);
-		respBody.write(("You are now in Message in room " + roomList.getCurrRoom() + "<br />").getBytes());
-		respBody.write((parameterList.toString() + "<br />").getBytes());
-		respBody.write(roomList.DisplayCurrentRoom().getBytes());
+		//respBody.write(("You are now in Message in room " + roomList.getCurrRoom() + "<br />").getBytes());
+		//respBody.write((parameterList.toString() + "<br />").getBytes());
+		respBody.write(roomList.getXMLForCurrentRoom().getBytes());
 		respBody.close();
 	}
 
@@ -130,8 +130,9 @@ public class EchoServer implements HttpHandler {
 
 		// and we're done...
 		//respBody.write("</table></body></html>".getBytes());
-		respBody.write("You are now in Retrieve<br />".getBytes());
-		respBody.write(parameterList.toString().getBytes());
+		//respBody.write("You are now in Retrieve<br />".getBytes());
+		//respBody.write(parameterList.toString().getBytes());
+		respBody.write(roomList.getXMLForCurrentRoom().getBytes());
 		respBody.close();
 	}
 

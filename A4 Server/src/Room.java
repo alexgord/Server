@@ -41,4 +41,15 @@ public class Room
 		}
 		return r;
 	}
+	public String toXMLString()
+	{
+		String r = "<?xml version=\"1.0\"?>";
+		r += "<message-list>";
+		for (int i = 0; i < this.getMessages().size(); i++)
+		{
+			r += this.getMessages().get(i).toXMLString();
+		}
+		r += "</message-list>";
+		return r;
+	}
 }
