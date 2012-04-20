@@ -55,7 +55,7 @@ public class EchoServer implements HttpHandler {
 
 			// in the header specify that the body will contain HTML
 			Headers respHeaders = exchange.getResponseHeaders();
-			respHeaders.set("Content-Type", "text/html");
+			respHeaders.set("Content-Type", "text/xml");
 
 			if (action.equals("message"))
 			{
@@ -103,7 +103,6 @@ public class EchoServer implements HttpHandler {
 		roomList.AddMessageToCurrentRoom(m);
 		//respBody.write(("You are now in Message in room " + roomList.getCurrRoom() + "<br />").getBytes());
 		//respBody.write((parameterList.toString() + "<br />").getBytes());
-		respBody.write(roomList.getXMLForCurrentRoom().getBytes());
 		respBody.close();
 	}
 
@@ -132,7 +131,12 @@ public class EchoServer implements HttpHandler {
 		//respBody.write("</table></body></html>".getBytes());
 		//respBody.write("You are now in Retrieve<br />".getBytes());
 		//respBody.write(parameterList.toString().getBytes());
-		respBody.write(roomList.getXMLForCurrentRoom().getBytes());
+		long since = 0;
+		if (parameterList.ParameterExists("since"))
+		{
+			since = Long.parseLong(parameterList.getValueFromParameterName("since"));
+		}
+		respBody.write(roomList.getXMLForCurrentRoom(since).getBytes());
 		respBody.close();
 	}
 

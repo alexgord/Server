@@ -10,7 +10,7 @@ public class Room
 		this.name = name;
 		messages = new ArrayList<Message>();
 	}
-	
+
 	public void AddMessage(Message m)
 	{
 		messages.add(m);
@@ -25,13 +25,7 @@ public class Room
 	{
 		return messages;
 	}
-	
-	public ArrayList<Message> getMessagesSinceTime(long t)
-	{
-		//TODO: PETER!!!!
-		return null;
-	}
-	
+
 	public String toString()
 	{
 		String r = "";
@@ -41,13 +35,19 @@ public class Room
 		}
 		return r;
 	}
-	public String toXMLString()
+
+	public String toXMLString(long since)
 	{
 		String r = "<?xml version=\"1.0\"?>";
 		r += "<message-list>";
 		for (int i = 0; i < this.getMessages().size(); i++)
 		{
-			r += this.getMessages().get(i).toXMLString();
+			String strTime = this.getMessages().get(i).getTime();
+			long time = Long.parseLong(strTime);
+			if (since < time)
+			{
+				r += this.getMessages().get(i).toXMLString();
+			}
 		}
 		r += "</message-list>";
 		return r;

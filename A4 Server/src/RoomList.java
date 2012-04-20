@@ -73,14 +73,14 @@ public class RoomList
 		return r;
 	}
 	
-	public String getXMLForCurrentRoom()
+	public String getXMLForCurrentRoom(long since)
 	{
 		String r = "<?xml version=\"1.0\"?><message-list></message-list>";
 		for (int i = 0; i < rooms.size(); i++)
 		{
 			if (rooms.get(i).getName().equals(getCurrRoom()))
 			{
-				r = rooms.get(i).toXMLString();
+				r = rooms.get(i).toXMLString(since);
 				break;
 			}
 		}
