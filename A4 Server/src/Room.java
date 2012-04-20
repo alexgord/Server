@@ -31,4 +31,14 @@ public class Room
 		//TODO: PETER!!!!
 		return null;
 	}
+	
+	public String toString()
+	{
+		String r = "";
+		for (int i = 0; i < messages.size(); i++)
+		{
+			r += messages.get(i).toString();
+		}
+		return r;
+	}
 }

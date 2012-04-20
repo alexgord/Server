@@ -10,7 +10,7 @@ public class Parameter
 		this.value = value;
 	}
 	
-	public String ToString()
+	public String toString()
 	{
 		return this.name + " = " + this.value;
 	}

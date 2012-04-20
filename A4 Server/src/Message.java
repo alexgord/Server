@@ -6,11 +6,11 @@ public class Message
 	private String message;
 	private String time;
 	
-	Message()
+	Message(String name, String message, String time)
 	{
-		name = "";
-		message = "";
-		time = "";
+		this.name = name;
+		this.message = message;
+		this.time = time;
 	}
 
 	public String getName()
@@ -41,5 +41,10 @@ public class Message
 	public void setTime(String time)
 	{
 		this.time = time;
+	}
+	
+	public String toString()
+	{
+		return this.name + " " + this.message + " " + this.time;
 	}
 }
