@@ -1,4 +1,4 @@
-
+import java.net.URLDecoder;
 
 public class Message
 {
@@ -6,10 +6,13 @@ public class Message
 	private String message;
 	private String time;
 	
+	
+	@SuppressWarnings("deprecation")
 	Message(String name, String message, String time)
 	{
 		this.name = name;
-		this.message = message;
+		this.message = URLDecoder.decode(message);
+		//this.message = message;
 		this.time = time;
 	}
 
