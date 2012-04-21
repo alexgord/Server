@@ -32,7 +32,8 @@ public class ServerApp extends EchoServer {
 	 * @throws HTTPException 
 	 */
 	public static void main(String[] args) throws HTTPException, IOException {
-		HttpServer server = HttpServer.create(new InetSocketAddress(8000), 0);
+		int port = Integer.parseInt(args[0]);
+		HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
 		server.createContext("/", new EchoServer());
 	    server.setExecutor(null); // creates a default executor
 	    server.start();
