@@ -1,25 +1,19 @@
 import java.util.ArrayList;
 
 
-public class RoomList
-{
+public class RoomList {
 	private ArrayList<Room> rooms;
 	private String currRoom;
-	public RoomList()
-	{
+	public RoomList() {
 		rooms = new ArrayList<Room>();
 	}
 
-	public boolean RoomExists(String s)
-	{
+	public boolean RoomExists(String s) {
 
 		boolean r = false;
-		if (rooms.size() > 0)
-		{
-			for (int i = 0; i < rooms.size(); i++)
-			{
-				if (rooms.get(i).getName().equals(s))
-				{
+		if (rooms.size() > 0) {
+			for (int i = 0; i < rooms.size(); i++) {
+				if (rooms.get(i).getName().equals(s)) {
 					r = true;
 					break;
 				}
@@ -28,44 +22,34 @@ public class RoomList
 		return r;
 	}
 
-	public String getCurrRoom()
-	{
+	public String getCurrRoom() {
 		return currRoom;
 	}
 
-	public void setCurrRoom(String currRoom)
-	{
+	public void setCurrRoom(String currRoom) {
 		this.currRoom = currRoom;
 	}
 
-	public void AddMessageToCurrentRoom(Message m)
-	{
-		if (RoomExists(currRoom))
-		{
-			for (int i = 0; i < rooms.size(); i++)
-			{
-				if (rooms.get(i).getName().equals(getCurrRoom()))
-				{
+	public void AddMessageToCurrentRoom(Message m) {
+		if (RoomExists(currRoom)) {
+			for (int i = 0; i < rooms.size(); i++) {
+				if (rooms.get(i).getName().equals(getCurrRoom())) {
 					rooms.get(i).AddMessage(m);
 					break;
 				}
 			}
 		}
-		else
-		{
+		else {
 			Room newRoom = new Room(currRoom);
 			newRoom.AddMessage(m);
 			rooms.add(newRoom);
 		}
 	}
 
-	public String DisplayCurrentRoom()
-	{
+	public String DisplayCurrentRoom() {
 		String r = "";
-		for (int i = 0; i < rooms.size(); i++)
-		{
-			if (rooms.get(i).getName().equals(getCurrRoom()))
-			{
+		for (int i = 0; i < rooms.size(); i++) {
+			if (rooms.get(i).getName().equals(getCurrRoom())) {
 				r = rooms.get(i).toString();
 				break;
 			}
@@ -73,13 +57,10 @@ public class RoomList
 		return r;
 	}
 	
-	public String getXMLForCurrentRoom(long since)
-	{
+	public String getXMLForCurrentRoom(long since) {
 		String r = "<?xml version=\"1.0\"?><message-list></message-list>";
-		for (int i = 0; i < rooms.size(); i++)
-		{
-			if (rooms.get(i).getName().equals(getCurrRoom()))
-			{
+		for (int i = 0; i < rooms.size(); i++) {
+			if (rooms.get(i).getName().equals(getCurrRoom())) {
 				r = rooms.get(i).toXMLString(since);
 				break;
 			}

@@ -1,51 +1,41 @@
 import java.util.ArrayList;
 
 
-public class Room
-{
+public class Room {
 	private String name;
 	private ArrayList<Message> messages;
-	public Room (String name)
-	{
+	public Room (String name) {
 		this.name = name;
 		messages = new ArrayList<Message>();
 	}
 
-	public void AddMessage(Message m)
-	{
+	public void AddMessage(Message m) {
 		messages.add(m);
 	}
 
-	public String getName()
-	{
+	public String getName()	{
 		return name;
 	}
 
-	public ArrayList<Message> getMessages()
-	{
+	public ArrayList<Message> getMessages()	{
 		return messages;
 	}
 
-	public String toString()
-	{
+	public String toString() {
 		String r = "";
-		for (int i = 0; i < messages.size(); i++)
-		{
+		for (int i = 0; i < messages.size(); i++) {
 			r += messages.get(i).toString();
 		}
 		return r;
 	}
 
-	public String toXMLString(long since)
-	{
+	public String toXMLString(long since) {
 		String r = "<?xml version=\"1.0\"?>";
 		r += "<message-list>";
-		for (int i = 0; i < this.getMessages().size(); i++)
-		{
+		for (int i = 0; i < this.getMessages().size(); i++) {
 			String strTime = this.getMessages().get(i).getTime();
 			long time = Long.parseLong(strTime);
-			if (since < time)
-			{
+			if (since < time) {
 				r += this.getMessages().get(i).toXMLString();
 			}
 		}

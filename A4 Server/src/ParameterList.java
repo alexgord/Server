@@ -1,50 +1,40 @@
 import java.util.ArrayList;
 
 
-public class ParameterList
-{
+public class ParameterList {
 	private ArrayList<Parameter> parameters;
 
-	public ParameterList()
-	{
+	public ParameterList() {
 		parameters = new ArrayList<Parameter>();
 	}
 
-	public void GenerateParameters(ArrayList<String> input)
-	{
-		for (int i = 0; i < input.size(); i++)
-		{
+	public void GenerateParameters(ArrayList<String> input) {
+		for (int i = 0; i < input.size(); i++) {
 			parameters.add(new Parameter(input.get(0), input.get(1)));
 			input.remove(0);
 			input.remove(0);
 		}
 	}
 
-	public int getSize()
-	{
+	public int getSize() {
 		return parameters.size();
 	}
 
-	public String toString()
-	{
+	public String toString() {
 		String r = "";
 
-		for (int i = 0; i < getSize(); i++)
-		{
+		for (int i = 0; i < getSize(); i++) {
 			r += parameters.get(i).toString() + "<br />";
 		}
 		return r;
 	}
 
-	public String getValueFromParameterName(String s)
-	{
+	public String getValueFromParameterName(String s) {
 		String r = "";
 
-		for (int i = 0; i < getSize(); i++)
-		{
+		for (int i = 0; i < getSize(); i++) {
 			String currName = parameters.get(i).getName();
-			if (currName.equals(s))
-			{
+			if (currName.equals(s))	{
 				r = parameters.get(i).getValue();
 			}
 		}
@@ -52,14 +42,11 @@ public class ParameterList
 		return r;
 	}
 
-	public boolean ParameterExists(String name)
-	{
+	public boolean ParameterExists(String name)	{
 		boolean r = false;
-		for (int i = 0; i < getSize(); i++)
-		{
+		for (int i = 0; i < getSize(); i++)	{
 			String currName = parameters.get(i).getName();
-			if (currName.equals(name))
-			{
+			if (currName.equals(name)) {
 				r = true;
 				break;
 			}
