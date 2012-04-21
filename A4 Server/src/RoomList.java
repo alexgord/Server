@@ -1,3 +1,12 @@
+/*********************************RoomList CLASS INFO******************************************
+
+This class stores a ArrayList of Rooms, as well as storing the current Room, and includes 
+functions for detecting whether a room exists, getting and setting the currRoom, adding a 
+message to a room, and generating the XML used for displaying message in a room from a 
+certain time.  
+
+*********************************************************************************************/
+
 import java.util.ArrayList;
 
 

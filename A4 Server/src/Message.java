@@ -1,3 +1,11 @@
+/**********************************Message CLASS INFO*****************************************
+
+This class is responsible for creating a message, getting and setting the name, getting and
+setting the content of the message getting and setting the time, converting all the variables
+into a string, and generating the XML to represent the message.  
+
+*********************************************************************************************/
+
 import java.net.URLDecoder;
 
 public class Message {

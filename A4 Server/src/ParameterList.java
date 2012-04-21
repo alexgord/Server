@@ -1,3 +1,11 @@
+/*******************************ParameterListCLASS INFO***************************************
+
+This class separates the already parsed URI into it's individual constituents, getting the 
+number of parameters, converting the parameters to strings, getting the numeric value a 
+parameter, and detecting whether a parameter exists.  
+
+*********************************************************************************************/
+
 import java.util.ArrayList;
 
 

@@ -51,42 +51,49 @@ public class EchoServer implements HttpHandler {
 			Headers respHeaders = exchange.getResponseHeaders();
 			respHeaders.set("Content-Type", "text/xml");
 
+			//if the desired action is to post a message
 			if (action.equals("message")) {
 				Message(respHeaders, exchange, method, uri, respHeaders);
 			}
-			else {
-				if (action.equals("retrieve")) {
-					Retrieve(respHeaders, exchange, method, uri, respHeaders);
-				}
-				else {
-					//We don't support any other action!!
-					throw new HTTPException(404);
-				}
+			else if (action.equals("retrieve")) {
+				Retrieve(respHeaders, exchange, method, uri, respHeaders);
 			}
-
+			else {
+				//We don't support any other action!!
+				throw new HTTPException(404);
+			}
 		}
 		catch (IOException e) {
-			System.err.println("Could not process message... aborting.");
+			System.err.println("Could not process command... aborting.");
 			return;
 		}
 	}
 
+	/************ArrayList Method************
+	If desired action is to post a message 
+	 */
 	private void Message(Headers respHeaders, HttpExchange exchange, String method, URI uri, Headers reqHeaders) throws IOException	{
 		// acknowledge the request
 		exchange.sendResponseHeaders(200, 0);
 		OutputStream respBody = exchange.getResponseBody();
+		
 		//Fill in all the fields of the message
 		String user = parameterList.getValueFromParameterName("user");
 		String content = parameterList.getValueFromParameterName("content");
+		
 		//Get the time of the message, in milliseconds since the epoch
 		Calendar c = Calendar.getInstance();
 		Long l = c.getTimeInMillis();
 		String time = l.toString();
+		
 		Message m = new Message(user, content, time);
 		roomList.AddMessageToCurrentRoom(m);
 		respBody.close();
 	}
 
+	/************ArrayList Method************
+	If desired action is to retrieve message(s)
+	 */
 	private void Retrieve(Headers respHeaders, HttpExchange exchange, String method, URI uri, Headers reqHeaders) throws IOException {
 		// acknowledge the request
 		exchange.sendResponseHeaders(200, 0);
@@ -96,10 +103,15 @@ public class EchoServer implements HttpHandler {
 		if (parameterList.ParameterExists("since")) {
 			since = Long.parseLong(parameterList.getValueFromParameterName("since"));
 		}
+		
 		respBody.write(roomList.getXMLForCurrentRoom(since).getBytes());
 		respBody.close();
 	}
 
+	/************ArrayList Method************
+	Transforms the string of the URI into an String ArrayList
+	by splitting it up into individual parameters.   
+	 */
 	private ArrayList<String> ParseURI(String s) {
 		String stringURI = s;
 		String delims = "[/?&=]";

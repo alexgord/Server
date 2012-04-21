@@ -1,3 +1,11 @@
+/***********************************Room CLASS INFO********************************************
+
+This class is responsible for creating a room along with the necessary variable, adding a 
+message, getting the Room name and the messages, transforming the message to a string, 
+and outputting the messages of the room in XML format.  
+
+*********************************************************************************************/
+
 import java.util.ArrayList;
 
 

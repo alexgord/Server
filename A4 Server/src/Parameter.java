@@ -1,3 +1,9 @@
+/*********************************Parameter CLASS INFO*****************************************
+
+This class is responsible for creating a parameter, converting a parameter to a string, to 
+a value, and getting the parameter name.  
+
+*********************************************************************************************/
 
 public class Parameter {
 	private String name;
