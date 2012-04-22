@@ -16,7 +16,7 @@ public class Message {
 	
 	@SuppressWarnings("deprecation")
 	Message(String name, String message, String time) {
-		this.name = name;
+		this.name = URLDecoder.decode(name);
 		this.message = URLDecoder.decode(message);
 		this.time = time;
 	}

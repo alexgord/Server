@@ -7,13 +7,14 @@ and outputting the messages of the room in XML format.
 *********************************************************************************************/
 
 import java.util.ArrayList;
-
+import java.net.URLDecoder;
 
 public class Room {
 	private String name;
 	private ArrayList<Message> messages;
+	@SuppressWarnings("deprecation")
 	public Room (String name) {
-		this.name = name;
+		this.name = URLDecoder.decode(name);
 		messages = new ArrayList<Message>();
 	}
 

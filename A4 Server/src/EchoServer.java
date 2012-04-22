@@ -69,7 +69,7 @@ public class EchoServer implements HttpHandler {
 		}
 	}
 
-	/************ArrayList Method************
+	/************Method Message************
 	If desired action is to post a message 
 	 */
 	private void Message(Headers respHeaders, HttpExchange exchange, String method, URI uri, Headers reqHeaders) throws IOException	{
@@ -91,7 +91,7 @@ public class EchoServer implements HttpHandler {
 		respBody.close();
 	}
 
-	/************ArrayList Method************
+	/************Method Retrieve************
 	If desired action is to retrieve message(s)
 	 */
 	private void Retrieve(Headers respHeaders, HttpExchange exchange, String method, URI uri, Headers reqHeaders) throws IOException {
